@@ -3,7 +3,7 @@ from tokenization.token import (load, tokenize)
 from definitions import ROOT_DIR
 
 
-def handing_start_dataset_new_groups(dataset):
+def handing_input_dataset_grouping(dataset):
     data = dataset
     data_update = data[['Question', 'General Category']]
     data_update = data_update.mask(data_update.eq(None)).dropna()
@@ -167,7 +167,7 @@ def lemma_statistics_grouping(dataset):
         "Other": {},
     }
 
-    data = handing_start_dataset_new_groups(dataset)
+    data = handing_input_dataset_grouping(dataset)
 
     for string in range(data['Question'].count()):
         try:
