@@ -3,5 +3,6 @@ jupyter
 anaconda
 pandas
 sklearn
+matplotlib
 
 spacy download en_core_web_sm
