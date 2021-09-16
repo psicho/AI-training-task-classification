@@ -12,6 +12,8 @@ def handing_input_dataset_grouping(dataset):
     data = dataset
     data_update = data[['Question', 'General Category']]
 
+    data_update = data_update.mask(data_update.eq(None)).dropna()
+
     for i in range(0, data_update.shape[0]):
         if data_update.iloc[i, 1] == 'Multiplication and division':
             data_update.iloc[i, 1] = 1
