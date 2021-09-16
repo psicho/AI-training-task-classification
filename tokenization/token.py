@@ -11,9 +11,48 @@ from definitions import ROOT_DIR
 def handing_input_dataset_grouping(dataset):
     data = dataset
     data_update = data[['Question', 'General Category']]
-    data_update = data_update.mask(data_update.eq(None)).dropna()
 
-    return data_update
+    for i in range(0, data_update.shape[0]):
+        if data_update.iloc[i, 1] == 'Multiplication and division':
+            data_update.iloc[i, 1] = 1
+        elif data_update.iloc[i, 1] == 'Addition and subtraction':
+            data_update.iloc[i, 1] = 2
+        elif data_update.iloc[i, 1] == 'Fractions':
+            data_update.iloc[i, 1] = 3
+        elif data_update.iloc[i, 1] == 'Mixed operations':
+            data_update.iloc[i, 1] = 4
+        elif data_update.iloc[i, 1] == 'Measurements':
+            data_update.iloc[i, 1] = 5
+        elif data_update.iloc[i, 1] == 'Figures':
+            data_update.iloc[i, 1] = 6
+        elif data_update.iloc[i, 1] == 'Number':
+            data_update.iloc[i, 1] = 7
+        elif data_update.iloc[i, 1] == 'Modelling':
+            data_update.iloc[i, 1] = 8
+        elif data_update.iloc[i, 1] == 'Geometry':
+            data_update.iloc[i, 1] = 9
+        elif data_update.iloc[i, 1] == 'Time':
+            data_update.iloc[i, 1] = 10
+        elif data_update.iloc[i, 1] == 'Comparison':
+            data_update.iloc[i, 1] = 11
+        elif data_update.iloc[i, 1] == 'Estimation':
+            data_update.iloc[i, 1] = 12
+        elif data_update.iloc[i, 1] == 'Logic':
+            data_update.iloc[i, 1] = 13
+        elif data_update.iloc[i, 1] == 'Series and pattern':
+            data_update.iloc[i, 1] = 14
+        elif data_update.iloc[i, 1] == 'Graph':
+            data_update.iloc[i, 1] = 15
+        elif data_update.iloc[i, 1] == 'Probability':
+            data_update.iloc[i, 1] = 16
+        elif data_update.iloc[i, 1] == 'Money':
+            data_update.iloc[i, 1] = 17
+        else:
+            data_update.iloc[i, 1] = 18  # 'Other' category
+
+    data = data_update.mask(data_update.eq(None)).dropna()
+
+    return data
 
 
 def handing_input_dataset_validation(dataset):
@@ -515,7 +554,8 @@ def create_training_data_set(link, validate=True):
         'target': []
     }
 
-    for string in range(data["Question"].count()):
+    # for string in range(data["Question"].count()):
+    for string in range(10):
         try:
             load_question = load(data.iloc[string, 0])
             load_target = data.iloc[string, 1]
