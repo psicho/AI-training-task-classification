@@ -554,8 +554,7 @@ def create_training_data_set(link, validate=True):
         'target': []
     }
 
-    # for string in range(data["Question"].count()):
-    for string in range(10):
+    for string in range(data["Question"].count()):
         try:
             load_question = load(data.iloc[string, 0])
             load_target = data.iloc[string, 1]
